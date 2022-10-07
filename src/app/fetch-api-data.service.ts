@@ -10,6 +10,7 @@ const apiUrl = 'https://cataflix.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserRegistrationService {
   // Inject the HttpClient module to the constructor params
  // This will provide HttpClient to the entire class, making it available via this.http
@@ -23,6 +24,7 @@ export class UserRegistrationService {
     catchError(this.handleError)
     );
   }
+  
   //making api call for the login endpoint
   public userLogin(userCredentials : any): Observable<any>{
     console.log(userCredentials);
