@@ -40,5 +40,16 @@ export class MovieCardComponent implements OnInit {
       })
     }
 
+
+    openDirectorDialog(name:string, bio:string): void{
+      this.dialog.open(GenreComponent,{
+        data: {
+          Name: name,
+          Bio: bio,
+          
+        },
+        width: '500px'
+      })
+    }
 }
 
