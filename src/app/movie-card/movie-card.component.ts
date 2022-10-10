@@ -51,5 +51,16 @@ export class MovieCardComponent implements OnInit {
         width: '500px'
       })
     }
+
+    openSummaryDialog(description:string): void{
+      this.dialog.open(GenreComponent,{
+        data: {
+          Description: description,        
+        },
+        width: '500px'
+      })
+    }
 }
+
+
 

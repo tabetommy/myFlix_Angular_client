@@ -23,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
+import { SummaryComponent } from './summary/summary.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     GenreComponent,
     DirectorComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
