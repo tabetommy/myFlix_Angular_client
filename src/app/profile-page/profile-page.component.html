@@ -1,0 +1,60 @@
+<header class="menu-bar">
+    <button
+    mat-button
+    (click)="openMoviesRoute()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    Movies
+</button>
+<button
+    mat-button
+    (click)="openProfileRoute()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    Profile
+</button>
+<button
+    mat-button
+    (click)="logout()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    Logout
+</button>
+</header>
+<div>
+    <mat-card >
+        <mat-dialog-content >
+            <b>Name: </b>{{ userInfo.Username }}
+        </mat-dialog-content>
+        <br />
+        <mat-dialog-content >
+            <b>Email: </b>{{ userInfo.Email }}
+        </mat-dialog-content>
+        <br />
+        <mat-dialog-content >
+            <b>Birth: </b>{{ userInfo.Birthday }}
+        </mat-dialog-content>
+        <br>
+        <button
+            mat-raised-button
+            (click)="openEditProfileDialog()"
+            color="primary"
+        >
+            Edit profile
+        </button>
+    </mat-card>
+    <!-- <mat-card *ngFor="let movieDetail of movieDetails; let i = index" style="flex: 1 1 auto">
+        <mat-card-header>
+          <mat-card-title>{{ movieDetail.Title }}</mat-card-title>
+        </mat-card-header>
+        <img
+          src="{{ movieDetail.ImagePath }}"
+          alt="{{ movieDetail.Title }}"
+          width="300"
+          height="400"
+        />
+    </mat-card> -->
+</div>

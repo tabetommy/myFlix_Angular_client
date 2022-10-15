@@ -1,46 +1,42 @@
-import { Component, OnInit , Input} from '@angular/core';
-
+import { Component, OnInit,Input } from '@angular/core';
+import { UserRegistrationService } from '../fetch-api-data.service';
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
-
-// This import brings in the API calls we created in 6.2
-import { UserRegistrationService } from '../fetch-api-data.service';
-
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss']
 })
-export class LoginFormComponent implements OnInit {
-
-  @Input() userData = { Username: '', Password: ''};
+export class EditProfileComponent implements OnInit {
+  @Input() userData = { Username: '', Password:'', Email: '', Birthday:''};
 
   constructor(
     public fetchApiData: UserRegistrationService,
-    public dialogRef: MatDialogRef<LoginFormComponent>,
-    public snackBar: MatSnackBar,
-    private router:Router,
+    public dialogRef: MatDialogRef<EditProfileComponent>,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
   // This is the function responsible for sending the form inputs to the backend
-  loginUser(): void {
-  this.fetchApiData.userLogin(this.userData).subscribe((result) => {
+editUserData(): void {
+  this.fetchApiData.editUserInfo(this.userData).subscribe((result) => {
 // Logic for a successful user registration goes here! (To be implemented)
    this.dialogRef.close(); // This will close the modal on success!
+   console.log(result)
+   localStorage.removeItem('user');
+   localStorage.removeItem('token');
    localStorage.setItem('user', result.user.Username);
    localStorage.setItem('token', result.token);
+   window.location.reload()
    this.snackBar.open(result, 'OK', {
       duration: 2000
    });
-   this.router.navigate(['movies']);
   }, (result) => {
     console.log(result)
     this.snackBar.open(result, 'OK', {

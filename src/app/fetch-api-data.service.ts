@@ -83,7 +83,7 @@ export class UserRegistrationService {
   //making api call to get info about a user
   getUserInfo():Observable<any>{
     const token = localStorage.getItem('token');
-    const username= localStorage.getItem('username');
+    const username= localStorage.getItem('user');
     return this.http.get(apiUrl + `users/${username}`,
       {headers:new HttpHeaders({Authorization: 'Bearer ' + token})})
     .pipe(
@@ -95,8 +95,20 @@ export class UserRegistrationService {
   //making api call to add movie to list of favourites 
   addMovie(MovieID:any):Observable<any>{
     const token = localStorage.getItem('token');
-    const username= localStorage.getItem('username');
-    return this.http.put(apiUrl + `users/${username}/movies/${MovieID}`,
+    const username= localStorage.getItem('user');
+    return this.http.put(apiUrl + `users/${username}/movies/${MovieID}`,null,
+      {headers:new HttpHeaders({Authorization: 'Bearer ' + token})})
+    .pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+      )
+  }
+
+  //making api call to get users list of favourite movies
+  getusersFavMovies():Observable<any>{
+    const token = localStorage.getItem('token');
+    const username= localStorage.getItem('user');
+    return this.http.get(apiUrl + `users/${username}/movies`,
       {headers:new HttpHeaders({Authorization: 'Bearer ' + token})})
     .pipe(
       map(this.extractResponseData),
@@ -131,7 +143,7 @@ export class UserRegistrationService {
   //making api call to edit user's info
   editUserInfo(userDetails:any):Observable<any>{
      const token = localStorage.getItem('token');
-     const username= localStorage.getItem('username');
+     const username= localStorage.getItem('user');
     return this.http.put(apiUrl + `users/${username}`,userDetails,
       {headers:new HttpHeaders({Authorization: 'Bearer ' + token})
     }

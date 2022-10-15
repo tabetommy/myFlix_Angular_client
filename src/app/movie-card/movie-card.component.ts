@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreComponent } from '../genre/genre.component';
+import { DirectorComponent } from '../director/director.component';
+import { SummaryComponent } from '../summary/summary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,7 +18,8 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router:Router,
      ) { }
 
 
@@ -30,34 +34,54 @@ export class MovieCardComponent implements OnInit {
       });
     }
 
-    openGenreDialog(name:string, description:string): void{
-      this.dialog.open(GenreComponent,{
-        data: {
-          Name: name,
-          Description: description,
-        },
-        width: '500px'
-      })
-    }
+  openGenreDialog(name:string, description:string): void{
+    this.dialog.open(GenreComponent,{
+      data: {
+        Name: name,
+        Description: description,
+      },
+      width: '500px'
+    })
+  }
 
 
-    openDirectorDialog(name:string, bio:string): void{
-      this.dialog.open(GenreComponent,{
-        data: {
-          Name: name,
-          Bio: bio,
-          
-        },
-        width: '500px'
-      })
-    }
+  openDirectorDialog(name:string, bio:string): void{
+    this.dialog.open(DirectorComponent,{
+      data: {
+        Name: name,
+        Bio: bio,
+        
+      },
+      width: '500px'
+    })
+  }
 
     openSummaryDialog(description:string): void{
-      this.dialog.open(GenreComponent,{
+      this.dialog.open(SummaryComponent,{
         data: {
           Description: description,        
         },
         width: '500px'
+      })
+    }
+
+    openMoviesRoute(): void {
+      this.router.navigate(['movies']);
+    }
+
+    openProfileRoute(): void {
+      this.router.navigate(['profile']);
+    }
+
+    logout(): void{
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      this.router.navigate(['welcome']);
+    }
+
+    addToFavMovies(movieId: string): void{
+      this.fetchApiData.addMovie(movieId).subscribe((result)=>{
+        this.ngOnInit();
       })
     }
 }
