@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
  userInfo:any = {};
- favouriteMovies:any[] =[];
+ favouriteMovieIds:any[] =[];
+ userFavMoviesDetails: any[]=[]
 
 
   constructor(
@@ -22,25 +23,35 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile(),
-    this. displayUsersFavMovies()
+    this. getUsersFavMoviesIds(),
+    this.getUsersFavMovieDetails()
   }
 
   getUserProfile(): void {
     this.fetchApiData.getUserInfo().subscribe((resp: any) => {
       this.userInfo=resp;
-      console.log(this.userInfo)
       return this.userInfo
       });
     }
   
-  displayUsersFavMovies(): void{
+    getUsersFavMoviesIds(): void{
     this.fetchApiData.getusersFavMovies().subscribe((resp:any)=>{
-      this.favouriteMovies=resp;
-      console.log(this.favouriteMovies)
-      return this.favouriteMovies
+      this.favouriteMovieIds=resp;
+      return this.favouriteMovieIds
     })
   }
 
+
+  getUsersFavMovieDetails(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+        resp.map((movie: any)=>{
+          if(this.favouriteMovieIds.includes(movie._id)){
+            this.userFavMoviesDetails.push(movie)
+          }
+        })
+        return this.userFavMoviesDetails
+      });
+    }
 
   
   openEditProfileDialog(): void {
@@ -49,11 +60,7 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  //reroute app to movies
-  moviesRoute(): void{
-    this.router.navigate(['movies']);
-  }
-
+  
   openMoviesRoute(): void {
     this.router.navigate(['movies']);
   }
