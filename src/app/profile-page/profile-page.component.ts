@@ -60,7 +60,7 @@ export class ProfilePageComponent implements OnInit {
       console.log(movieId);
        this.fetchApiData.deleteMovie(movieId).subscribe((result)=>{
         console.log(result);
-          this.ngOnInit();
+        window.location.reload();
         })
     }
 
@@ -100,6 +100,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   openProfileRoute(): void {
+    window.location.reload();
     this.router.navigate(['profile']);
   }
 
