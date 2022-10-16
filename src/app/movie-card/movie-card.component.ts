@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 export class MovieCardComponent implements OnInit {
 
   movies: any[] = [];
+  // favouriteMovieIds:any[] =[];
+
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
@@ -25,6 +27,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    // this. getUsersFavMoviesIds();
   }
 
   getMovies(): void {
@@ -79,11 +82,25 @@ export class MovieCardComponent implements OnInit {
       this.router.navigate(['welcome']);
     }
 
+    // getUsersFavMoviesIds(): void{
+    //   this.fetchApiData.getusersFavMovies().subscribe((resp:any)=>{
+    //     this.favouriteMovieIds=resp;
+    //     return this.favouriteMovieIds
+    //   })
+    // }
+
     addToFavMovies(movieId: string): void{
-      this.fetchApiData.addMovie(movieId).subscribe((result)=>{
-        this.ngOnInit();
-      })
-    }
+      
+        this.fetchApiData.addMovie(movieId).subscribe((result)=>{
+          this.ngOnInit();
+        }) 
+    
+        // this.fetchApiData.deleteMovie(movieId).subscribe((result)=>{
+        //   this.ngOnInit();
+        // })
+      }
+      
+    
 }
 
 

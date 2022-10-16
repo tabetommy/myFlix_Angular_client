@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +20,7 @@ export class ProfilePageComponent implements OnInit {
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
     private router:Router,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +53,38 @@ export class ProfilePageComponent implements OnInit {
         })
         return this.userFavMoviesDetails
       });
+    }
+
+  
+  removeMovieFromFavs(movieId: string): void{
+      console.log(movieId);
+       this.fetchApiData.deleteMovie(movieId).subscribe((result)=>{
+        console.log(result);
+          this.ngOnInit();
+        })
+    }
+
+
+    deleteProfile(): void {
+      if (
+        confirm(
+          'Are you sure you want to delete your account? This can\'t be undone.'
+        )
+      ) {
+        this.router.navigate(['welcome']).then(() => {
+          this.snackBar.open(
+            'You have successfully deleted your account!',
+            'OK',
+            {
+              duration: 2000,
+            }
+          );
+        });
+        this.fetchApiData.deleteUser().subscribe((result) => {
+          console.log(result);
+          localStorage.clear();
+        });
+      }
     }
 
   

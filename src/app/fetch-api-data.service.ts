@@ -119,7 +119,7 @@ export class UserRegistrationService {
   //making api call to delete user info
   deleteUser():Observable<any>{
     const token = localStorage.getItem('token');
-    const username= localStorage.getItem('username');
+    const username= localStorage.getItem('user');
     return this.http.delete(apiUrl + `users/${username}`,
       {headers:new HttpHeaders({Authorization: 'Bearer ' + token})})
     .pipe(
@@ -131,7 +131,7 @@ export class UserRegistrationService {
   //making api call to delete movie from user's list of favourites
   deleteMovie(MovieID:any):Observable<any>{
      const token = localStorage.getItem('token');
-     const username= localStorage.getItem('username');
+     const username= localStorage.getItem('user');
     return this.http.delete(apiUrl + `users/${username}/movies/${MovieID}`,
       {headers:new HttpHeaders({Authorization: 'Bearer ' + token})})
     .pipe(

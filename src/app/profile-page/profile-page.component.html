@@ -5,6 +5,7 @@
     color="basic"
     class="menu-bar-btn"
 >
+    <mat-icon>movie</mat-icon>
     Movies
 </button>
 <button
@@ -13,6 +14,7 @@
     color="basic"
     class="menu-bar-btn"
 >
+    <mat-icon>account_circle</mat-icon>
     Profile
 </button>
 <button
@@ -21,6 +23,7 @@
     color="basic"
     class="menu-bar-btn"
 >
+    <mat-icon>logout</mat-icon>
     Logout
 </button>
 </header>
@@ -44,8 +47,17 @@
             mat-raised-button
             (click)="openEditProfileDialog()"
             color="primary"
+            style="margin:5px ;"
         >
             Edit profile
+        </button>
+        <button
+            mat-raised-button
+            (click)="deleteProfile()"
+            color="warn"
+        >
+            <mat-icon>delete_forever</mat-icon>
+            Delete profile
         </button>
     </mat-card>
     <p class="profile-page-text">List of favourite movies</p>
@@ -59,6 +71,13 @@
             alt="{{ userFavMoviesDetail.Title }}"
             class="profile-page-movie-image"
             />
+            <button
+            mat-raised-button
+            (click)="removeMovieFromFavs(userFavMoviesDetail._id)"
+            color="primary"
+            >
+                Delete movie
+            </button>
         </mat-card>
     </div>
 </div>
