@@ -12,10 +12,15 @@ import { Router } from '@angular/router';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss']
 })
+
+/**
+ * Contains code for the movies page where user can view all movies,
+ * movies director,genre,summary and 
+ * add movie to list of favourite movies
+ */
 export class MovieCardComponent implements OnInit {
 
-  movies: any[] = [];
-  // favouriteMovieIds:any[] =[];
+  movies: any[] = []; //contains all movies
 
   constructor(
     public fetchApiData: UserRegistrationService,
@@ -29,6 +34,10 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * Gets movies data from api
+   * @returns an array of movie objects an assigns it to movie varaible
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -36,29 +45,41 @@ export class MovieCardComponent implements OnInit {
       });
     }
 
+  /**
+   * Opens a dialog to display movie genre
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name:string, description:string): void{
     this.dialog.open(GenreComponent,{
       data: {
         Name: name,
         Description: description,
       },
-      width: '500px'
+      width: '500px' //assign dialog's width
     })
   }
 
-
+  /**
+   * Opens a dialog to display a movie's director
+   * @param name 
+   * @param bio 
+   */
   openDirectorDialog(name:string, bio:string): void{
     this.dialog.open(DirectorComponent,{
       data: {
         Name: name,
-        Bio: bio,
-        
+        Bio: bio,     
       },
       width: '500px'
     })
   }
 
-    openSummaryDialog(description:string): void{
+  /**
+   *Opens a dialog to display a movie's summary 
+   * @param description 
+   */
+  openSummaryDialog(description:string): void{
       this.dialog.open(SummaryComponent,{
         data: {
           Description: description,        
@@ -67,28 +88,40 @@ export class MovieCardComponent implements OnInit {
       })
     }
 
-    openMoviesRoute(): void {
+  /**
+   * Routes app to movies page
+   */
+  openMoviesRoute(): void {
       this.router.navigate(['movies']);
     }
 
-    openProfileRoute(): void {
+  /**
+   * Routes app to the user's profile page
+   */
+  openProfileRoute(): void {
       this.router.navigate(['profile']);
     }
 
-    logout(): void{
+  /**
+   * logs user out
+   */
+  logout(): void{
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       this.router.navigate(['welcome']);
     }
 
     
-
-    addToFavMovies(movieId: string): void{ 
-        this.fetchApiData.addMovie(movieId).subscribe((result)=>{
-          this.ngOnInit();
-        }) 
-    
-      }
+  /**
+   * Sends a put request to api to add a movie to the user's list of favourite movies
+   * @param movieId 
+   */
+  addToFavMovies(movieId: string): void{ 
+      this.fetchApiData.addMovie(movieId).subscribe((result)=>{
+        this.ngOnInit();
+      }) 
+  
+    }
       
     
 }

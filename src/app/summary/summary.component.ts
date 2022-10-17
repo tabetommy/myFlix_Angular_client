@@ -6,6 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })
+
+/**
+ * Displays a single movie's summary
+ */
 export class SummaryComponent implements OnInit {
 
   constructor(

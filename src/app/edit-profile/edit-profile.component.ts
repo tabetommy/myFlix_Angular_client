@@ -11,6 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
+
+/**
+ * contains all neccesary states, data and functions to edit users data
+ */
 export class EditProfileComponent implements OnInit {
   @Input() userData = { Username: '', Password:'', Email: '', Birthday:''};
 
@@ -23,11 +27,12 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
-editUserData(): void {
+  /**
+   * makes api call to send edited user data to backend
+   */
+  editUserData(): void {
   this.fetchApiData.editUserInfo(this.userData).subscribe((result) => {
-// Logic for a successful user registration goes here! (To be implemented)
-   this.dialogRef.close(); // This will close the modal on success!
+   this.dialogRef.close(); 
    console.log(result)
    localStorage.removeItem('user');
    localStorage.removeItem('token');

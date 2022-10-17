@@ -6,6 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './genre.component.html',
   styleUrls: ['./genre.component.scss']
 })
+
+/**
+ * Displays a single movie's genre information
+ */
 export class GenreComponent implements OnInit {
 
   constructor(
@@ -18,7 +22,5 @@ export class GenreComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  
 
 }
