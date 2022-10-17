@@ -1,0 +1,83 @@
+<header class="menu-bar">
+    <button
+    mat-button
+    (click)="openMoviesRoute()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    <mat-icon>movie</mat-icon>
+    Movies
+</button>
+<button
+    mat-button
+    (click)="openProfileRoute()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    <mat-icon>account_circle</mat-icon>
+    Profile
+</button>
+<button
+    mat-button
+    (click)="logout()"
+    color="basic"
+    class="menu-bar-btn"
+>
+    <mat-icon>logout</mat-icon>
+    Logout
+</button>
+</header>
+<div>
+    <mat-card class="profile-page-elements" *ngIf="userInfo">
+        <img src="https://i.pravatar.cc/200"  alt="profile-picture" class="profile-page-image">
+        <br>
+        <mat-dialog-content >
+            {{ userInfo.Username }}
+        </mat-dialog-content>
+        <br />
+        <mat-dialog-content  >
+            {{ userInfo.Email }}
+        </mat-dialog-content>
+        <br />
+        <mat-dialog-content >
+            {{ userInfo.Birthday | date }}
+        </mat-dialog-content>
+        <br>
+        <button
+            mat-raised-button
+            (click)="openEditProfileDialog()"
+            color="primary"
+            style="margin:5px ;"
+        >
+            Edit profile
+        </button>
+        <button
+            mat-raised-button
+            (click)="deleteProfile()"
+            color="warn"
+        >
+            <mat-icon>delete_forever</mat-icon>
+            Delete profile
+        </button>
+    </mat-card>
+    <p class="profile-page-text">List of favourite movies</p>
+    <div class="profile-page-users-fav-movies">
+        <mat-card *ngFor="let userFavMoviesDetail of userFavMoviesDetails; let i = index" class="profile-page-movie-card">
+            <mat-card-header>
+            <mat-card-title>{{ userFavMoviesDetail.Title }}</mat-card-title>
+            </mat-card-header>
+            <img
+            src="{{ userFavMoviesDetail.ImagePath }}"
+            alt="{{ userFavMoviesDetail.Title }}"
+            class="profile-page-movie-image"
+            />
+            <button
+            mat-raised-button
+            (click)="removeMovieFromFavs(userFavMoviesDetail._id)"
+            color="primary"
+            >
+                Delete movie
+            </button>
+        </mat-card>
+    </div>
+</div>

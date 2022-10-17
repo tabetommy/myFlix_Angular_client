@@ -1,0 +1,16 @@
+$textShadowColor:grey;
+
+.welcome-page{
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	padding-top: calc(100vh /2);
+}
+.btns{
+	display:flex;
+	justify-content:space-evenly;
+}
+.header{
+	font-family: 'Abril Fatface', cursive;
+	text-shadow: 1px 1px $textShadowColor
+}
