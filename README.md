@@ -51,6 +51,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - The project must contain technical documentation using JSDoc
 - The project must be hosted on GitHub Pages
 
-## Further help
+## Author
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+👤 **Tommy Tabe**
+
+- Github: [@tabetommy](https://github.com/tabetommy)
+- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- Linkedin: [Tommy egbe](https://www.linkedin.com/in/tommy-egbe-304464116/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](issues/).

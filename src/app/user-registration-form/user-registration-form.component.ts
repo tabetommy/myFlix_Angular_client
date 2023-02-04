@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class UserRegistrationFormComponent implements OnInit {
-
+  // @input defiens components input
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
 constructor(
@@ -44,5 +44,4 @@ registerUser(): void {
       });
     });
   }
-
   }
