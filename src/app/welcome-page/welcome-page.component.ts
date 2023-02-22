@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-page',
@@ -13,7 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
  * This function host the user's registration and login forms
  */
 export class WelcomePageComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private router:Router
+    ) { }
   ngOnInit(): void {
   }
 
@@ -33,6 +37,10 @@ export class WelcomePageComponent implements OnInit {
       this.dialog.open(LoginFormComponent, {
       width: '280px'
       });
+    }
+
+    openMovies(): void{
+      this.router.navigate(['movieswithoutAuth']); 
     }
 
 }

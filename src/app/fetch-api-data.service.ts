@@ -44,6 +44,14 @@ export class UserRegistrationService {
       catchError(this.handleError)
     );
   }
+
+    //making api call to get all movies without authentication
+    getAllMoviesWithoutAuth(): Observable<any> {
+      return this.http.get(apiUrl + "movieadminroute").pipe(
+        map(this.extractResponseData),
+        catchError(this.handleError)
+      );
+    }
  
  //making api call to get a single movie
   getSingleMovie(title : any):Observable<any>{

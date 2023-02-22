@@ -24,6 +24,7 @@ import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
 import { SummaryComponent } from './summary/summary.component';
 import { EditProfileComponent} from './edit-profile/edit-profile.component';
+import { MoviesWithoutAuthComponent } from './movies-without-auth/movies-without-auth.component'; 
 
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'movieswithoutAuth', component: MoviesWithoutAuthComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     SummaryComponent,
     ProfilePageComponent,
     EditProfileComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    MoviesWithoutAuthComponent
   ],
   imports: [
     BrowserModule,
